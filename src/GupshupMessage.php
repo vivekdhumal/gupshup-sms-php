@@ -52,7 +52,6 @@ class GupshupMessage
 
         $client = new Client([
             'base_uri' => 'https://enterprise.smsgupshup.com',
-            "verify" => false,
         ]);
         
         $response = $client->get('/GatewayAPI/rest', [

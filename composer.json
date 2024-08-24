@@ -1,0 +1,12 @@
+{
+    "name": "vivekdhumal/gupshup-sms-php",
+    "description": "Package to send sms using Gupshup REST API",
+    "autoload": {
+        "psr-4": {
+            "Vivekdhumal\\GupshupSMS\\": "src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^7.0"
+    }
+}

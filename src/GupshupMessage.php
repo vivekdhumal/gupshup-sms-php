@@ -51,30 +51,35 @@ class GupshupMessage
         if (!$this->to || !$this->message) {
             throw new \Exception('SMS not correct.');
         }
-
-        $client = new Client([
-            'base_uri' => 'https://enterprise.smsgupshup.com',
-        ]);
-        
-        $response = $client->get('/GatewayAPI/rest', [
-            'method' => 'SendMessage',
-            'send_to' => $this->to,
-            'msg' => $this->message,
-            'msg_type' => 'TEXT',
-            'userid' => $this->userid,
-            'auth_scheme' => 'plain',
-            'password' => $this->password,
-            'v' => '1.1',
-            'format' => 'JSON',
-            'mask' => $this->mask,
-            'principalEntityId' => $this->entityId,
-            'dltTemplateId' => $this->templateId,
-        ]);
-
         try {
-            return $response;
+            $client = new Client([
+                'base_uri' => 'https://enterprise.smsgupshup.com',
+            ]);
+            
+            $response = $client->get('/GatewayAPI/rest', [
+                'method' => 'SendMessage',
+                'send_to' => $this->to,
+                'msg' => $this->message,
+                'msg_type' => 'TEXT',
+                'userid' => $this->userid,
+                'auth_scheme' => 'plain',
+                'password' => $this->password,
+                'v' => '1.1',
+                'format' => 'JSON',
+                'mask' => $this->mask,
+                'principalEntityId' => $this->entityId,
+                'dltTemplateId' => $this->templateId,
+            ]);
+
+            if($response->getStatusCode() >= 200) {
+                // Get the response body and decode JSON
+                $data = json_decode($response->getBody()->getContents(), true);
+                return $data;
+            } else {
+                throw new \Exception('SMS is not sent, status code : '.$response->getStatusCode());
+            }
         } catch(ConnectException $ex) {
-            throw new \Exception('SMS is not sent : '.$ex->getMessage());
+            throw new \Exception('SMS is not sent, error : '.$ex->getMessage());
         }
     }
 }

@@ -2,7 +2,9 @@
 
 namespace Vivekdhumal\GupshupSMS;
 
+use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ConnectException;
 
 class GupshupMessage
 {
@@ -69,6 +71,10 @@ class GupshupMessage
             'dltTemplateId' => $this->templateId,
         ]);
 
-        return $response;
+        try {
+            return $response;
+        } catch(ConnectException $ex) {
+            throw new \Exception('SMS is not sent : '.$ex->getMessage());
+        }
     }
 }

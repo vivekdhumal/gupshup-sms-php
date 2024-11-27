@@ -61,7 +61,7 @@ class GupshupMessage
         }
         try {
             $client = new Client([
-                'base_uri' => 'https://enterprise.smsgupshup.com',
+                'base_uri' => 'http://enterprise.smsgupshup.com',
                 'verify' => $this->sslVerify,
             ]);
             

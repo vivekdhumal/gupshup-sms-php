@@ -15,6 +15,7 @@ class GupshupMessage
     protected $mask;
     protected $entityId;
     protected $templateId;
+    protected $sslVerify = true;
 
     public function __construct($userid, $password, $mask, $entityId = null, $templateId = null)
     {
@@ -28,6 +29,13 @@ class GupshupMessage
     public function setTemplateId($templateId)
     {
         $this->templateId = $templateId;
+
+        return $this;
+    }
+
+    public function setSSLVerify($verify)
+    {
+        $this->sslVerify = $verify;
 
         return $this;
     }
@@ -54,6 +62,7 @@ class GupshupMessage
         try {
             $client = new Client([
                 'base_uri' => 'https://enterprise.smsgupshup.com',
+                'verify' => $this->sslVerify,
             ]);
             
             $response = $client->get('/GatewayAPI/rest', [

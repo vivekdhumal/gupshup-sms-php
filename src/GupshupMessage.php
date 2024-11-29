@@ -82,12 +82,22 @@ class GupshupMessage
                 ]
             ]);
 
-            var_dump($response->getBody()->getContents());
+            // var_dump($response->getBody()->getContents());
             
             if($response->getStatusCode() >= 200) {
                 // Get the response body and decode JSON
                 $data = json_decode($response->getBody()->getContents(), true);
-                return $data;
+
+                if($data && isset($data['response'])) {
+                    return new GupshupResponse($data['response']['status'], null, $data['response']['id'], $data['response']['details'], $data['response']['phone']);
+                } else {
+                    $arr = array_map('trim', explode('|', $response->getBody()->getContents()));
+
+                    if(isset($arr[2])) {
+                        return new GupshupResponse('error', $arr[2]);
+                    }
+                }
+                return new GupshupResponse('error', 'No response from api');
             } else {
                 throw new \Exception('SMS is not sent, status code : '.$response->getStatusCode());
             }

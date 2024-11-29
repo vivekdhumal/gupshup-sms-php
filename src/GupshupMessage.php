@@ -81,11 +81,8 @@ class GupshupMessage
                     'dltTemplateId' => $this->templateId,
                 ]
             ]);
-
-            // var_dump($response->getBody()->getContents());
             
             if($response->getStatusCode() >= 200) {
-                // Get the response body and decode JSON
                 $data = json_decode($response->getBody()->getContents(), true);
 
                 if($data && isset($data['response'])) {

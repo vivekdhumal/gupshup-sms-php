@@ -57,7 +57,7 @@ class GupshupMessage
     public function send()
     {
         if (!$this->to || !$this->message) {
-            throw new \Exception('SMS not correct.');
+            return new GupshupResponse('error', 'SMS not correct.');
         }
         try {
             $client = new Client([
@@ -99,10 +99,10 @@ class GupshupMessage
                 }
                 return new GupshupResponse('error', 'No response from api');
             } else {
-                throw new \Exception('SMS is not sent, status code : '.$response->getStatusCode());
+                return new GupshupResponse('error', 'SMS is not sent, status code : '.$response->getStatusCode());
             }
         } catch(ConnectException $ex) {
-            throw new \Exception('SMS is not sent, error : '.$ex->getMessage());
+            return new GupshupResponse('error', 'SMS is not sent, error : '.$ex->getMessage());
         }
     }
 }

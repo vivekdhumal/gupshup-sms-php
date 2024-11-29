@@ -1,12 +1,20 @@
 {
     "name": "vivekdhumal/gupshup-sms-php",
-    "description": "Package to send sms using Gupshup REST API",
+    "description": "Package to send SMS using Gupshup REST API",
+   "license": "MIT",
+    "authors": [
+        {
+            "name": "Vivek Dhumal",
+            "email": "dhumal.vivek02@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Vivekdhumal\\GupshupSMS\\": "src/"
         }
     },
     "require": {
+        "php": "^7.3 || ^8.0",
         "guzzlehttp/guzzle": "^7.0"
     }
 }

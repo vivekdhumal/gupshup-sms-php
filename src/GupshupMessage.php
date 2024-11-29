@@ -66,20 +66,24 @@ class GupshupMessage
             ]);
             
             $response = $client->get('/GatewayAPI/rest', [
-                'method' => 'SendMessage',
-                'send_to' => $this->to,
-                'msg' => $this->message,
-                'msg_type' => 'TEXT',
-                'userid' => $this->userid,
-                'auth_scheme' => 'plain',
-                'password' => $this->password,
-                'v' => '1.1',
-                'format' => 'JSON',
-                'mask' => $this->mask,
-                'principalEntityId' => $this->entityId,
-                'dltTemplateId' => $this->templateId,
+                'query' => [
+                    'method' => 'SendMessage',
+                    'send_to' => $this->to,
+                    'msg' => $this->message,
+                    'msg_type' => 'TEXT',
+                    'userid' => $this->userid,
+                    'auth_scheme' => 'plain',
+                    'password' => $this->password,
+                    'v' => '1.1',
+                    'format' => 'JSON',
+                    'mask' => $this->mask,
+                    'principalEntityId' => $this->entityId,
+                    'dltTemplateId' => $this->templateId,
+                ]
             ]);
 
+            var_dump($response->getBody()->getContents());
+            
             if($response->getStatusCode() >= 200) {
                 // Get the response body and decode JSON
                 $data = json_decode($response->getBody()->getContents(), true);

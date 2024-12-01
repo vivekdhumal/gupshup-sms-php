@@ -2,7 +2,7 @@
 
 This package will manages to send Text SMS using  [Gupshup.io](https://www.gupshup.io) service
 
-### Version - v1.0
+### Version - v1.1
 
 ### Requirement
 

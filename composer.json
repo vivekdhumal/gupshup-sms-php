@@ -10,7 +10,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Vivekdhumal\\GupshupSMS\\": "src/"
+            "VivekDhumal\\GupshupSMS\\": "src/"
         }
     },
     "require": {

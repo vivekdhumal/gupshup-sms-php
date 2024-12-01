@@ -1,6 +1,6 @@
 <?php
 
-namespace Vivekdhumal\GupshupSMS;
+namespace VivekDhumal\GupshupSMS;
 
 use Exception;
 use GuzzleHttp\Client;

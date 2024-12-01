@@ -1,6 +1,6 @@
 <?php
 
-namespace Vivekdhumal\GupshupSMS;
+namespace VivekDhumal\GupshupSMS;
 
 class GupshupResponse
 {

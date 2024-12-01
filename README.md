@@ -21,7 +21,7 @@ composer require vivekdhumal/gupshup-sms-php
 
 require_once 'vendor/autoload.php';
 
-use Vivekdhumal\GupshupSMS\GupshupMessage;
+use VivekDhumal\GupshupSMS\GupshupMessage;
 
 $userid = 'Your user id';
 $password = 'Your password';
